@@ -24,4 +24,5 @@ typedef void*	t_args_public_pointer_effective_arg_side_effects;
 
 typedef t_args_public_pointer_effective_arg_side_effects	t_appease;
 
+typedef t_appease t_args_ef;
 #endif

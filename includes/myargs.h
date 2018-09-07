@@ -3,7 +3,7 @@
 
 /*
 ** modify :
-** t_args_public_pointer_effective_arg_side_effects t_appease
+** t_args_ef
 ** in myargs_t_appease.h if wanted.
 ** defaults to (void*)
 */
@@ -21,7 +21,7 @@ typedef struct		s_args_arg_parse_state {
 	int			argsc;
 	int			argsi;
 	char		*argi;
-}					t_s_aaps;
+}					t_s_args_ps;
 
 /*
 **t_a_arger:
@@ -29,14 +29,31 @@ typedef struct		s_args_arg_parse_state {
 ** 0 on success,
 ** > 0 on our errors
 */
-typedef int			(*t_a_arger)(t_s_aaps *parse_state, t_appease *arg_effects);
+typedef int			(*t_args_arger)(
+	t_s_aaps *parse_state,
+	void *foo_args,
+	t_args_ef *effects);
 
-typedef struct		s_args_register_argument_type {
-	char		*name;
-	t_aarger	affect;
+typedef struct		s_args_register_token {
+	char			*pattern;
+	t_args_arger	pre_effect;
+	void			*pre_args;
+	t_s_rbt			*continue_parse;
+	t_args_arger	post_effect;
+	void			*post_args;
+}					t_s_args_reg;
 
-}					t_s_a_rat;
+/*
+**functions:
+*/
 
+int					args_register(
+	t_s_args_reg	tokens[],
+	size_t			ar_sz,
+	t_s_rbt			*p_ret);
 
+int					args_consume(
+	t_s_rbt *tokens,
+	t_s_args_ps *parsee);
 
-#endif
+dif

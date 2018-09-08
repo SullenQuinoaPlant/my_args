@@ -10,19 +10,19 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MYARGS_T_APPEASE_H
-# define MYARGS_T_APPEASE_H
+#ifndef MYARGS_T_ARGS_EF_H
+# define MYARGS_T_ARGS_EF_H
 
 /*
 **typedef struct	s_args_side_effects {
 **	statically	typed;
 **	stuff		here;
-**}					t_args_public_pointer_effective_arg_side_effects;
+**}					t_args_side_effects;
+**
+**typedef t_args_side_effects *t_args_pointer_to_ærgs_side_effects;
 */
 
-typedef void*	t_args_public_pointer_effective_arg_side_effects;
+typedef void		*t_args_pointer_to_args_side_effects;
 
-typedef t_args_public_pointer_effective_arg_side_effects	t_appease;
-
-typedef t_appease t_args_ef;
+typedef t_args_ef	t_args_pointer_to_args_side_effects;
 #endif

@@ -7,20 +7,21 @@
 ** in myargs_t_appease.h if wanted.
 ** defaults to (void*)
 */
-# include "myargs_t_appease.h"
+# include "myargs_t_args_ef.h"
 
 /*
-**t_s_aaps:
+**t_s_args_ps:
 ** args: all args array, as passed to main
-** argsc: all args count, aspassed to main
+** argsc: all args count, as passed to main
 ** argsi: index of current argument
-** argi: index of first unused char within string of current argument
+** argp: pointer to first unused char within string of current argument
 */
 typedef struct		s_args_arg_parse_state {
 	char		*args[];
 	int			argsc;
 	int			argsi;
-	char		*argi;
+	char		*argp;
+	t_s_args_ef	*effects;
 }					t_s_args_ps;
 
 /*
@@ -30,15 +31,14 @@ typedef struct		s_args_arg_parse_state {
 ** > 0 on our errors
 */
 typedef int			(*t_args_arger)(
-	t_s_aaps *parse_state,
 	void *foo_args,
-	t_args_ef *effects);
+	t_s_args_ps *parse_state);
 
 typedef struct		s_args_register_token {
-	char			*pattern;
+	char const		*pattern;
 	t_args_arger	pre_effect;
 	void			*pre_args;
-	t_s_rbt			*continue_parse;
+	t_s_args_reg	*continue_pattern_str;
 	t_args_arger	post_effect;
 	void			*post_args;
 }					t_s_args_reg;
@@ -47,13 +47,15 @@ typedef struct		s_args_register_token {
 **functions:
 */
 
-int					args_register(
-	t_s_args_reg	tokens[],
-	size_t			ar_sz,
-	t_s_rbt			*p_ret);
+int					args_process_input(
+	int					argc,
+	char				*argv[],
+	t_s_args_reg const	*register_tokens_str,
+	t_args_ef			*p_ef);
 
-int					args_consume(
-	t_s_rbt *tokens,
-	t_s_args_ps *parsee);
+# define ARGS_SYS_ERR -1
+# define ARGS_SUCCESS 0
+# define ARGS_BAD_INPUT 1
+# define ARGS_ARGER_ERROR 2
 
-dif
+#endif

@@ -17,7 +17,7 @@ SRCS := $(patsubst %,$(SRC_DIR)/%.c,$(TARGETS))
 INCS := $(wildcard $(INC_DIR)/*.h)
 OBJS := $(patsubst %,$(OBJ_DIR)/%.o,$(TARGETS))
 
-DEPENDENCIES =
+DEPENDENCIES = libmyrbtree
 
 CC := gcc
 CFLAGS_MORE =
